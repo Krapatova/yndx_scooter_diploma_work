@@ -9,7 +9,7 @@ def create_order():
 
 #Сохраняем созданный трек номер
 response = create_order().json()
-track_number = response['track']
+track_number_from_new_order = response['track']
 
 #Вставляем сохраненный трек-номер в параметры запроса
 def new_params(new_track):
@@ -17,7 +17,6 @@ def new_params(new_track):
     return current_param
 
 #Запрос на получение заказа по трек-номеру
-def check_order_information():
+def check_order_information(track_number):
     return requests.get(configurations.SERVICE_URL + configurations.GET_ORDER_BY_TRACK,
                         params = new_params(track_number))
-
